@@ -64,9 +64,39 @@ function draw() {
 
   fill(0);
   text("Silicagel", width / 2, height / 2);
+  
+ if (m1.isPlaying()) {
+    let rate = m1.rate();  
+    let rotationSpeed = map(rate, 0, 2, 0.05, 0.5);
+    let angle = rotationSpeed * frameCount;  
+   
+    push();
+    translate(160, 160);  
+    rotate(angle);  
+    imageMode(CENTER);
+    image(img1, 0, 0, 320, 320); 
+    pop();
+  } else {
+    
+    image(img1, 0, 0, 320, 320);
+  }
 
-  image(img1, 0, 0, 320, 320);
-  image(img2,320,320,320,320);
+  if (m2.isPlaying()) {
+    
+    let rate = m2.rate();  
+    let rotationSpeed = map(rate, 0, 2, 0.05, 0.5);  
+    let angle = rotationSpeed * frameCount;
+  
+    push();
+    translate(480, 480);  
+    rotate(angle);  
+    imageMode(CENTER);
+    image(img2, 0, 0, 320, 320);  
+    pop();
+  } else {
+    image(img2, 320, 320, 320, 320);
+  }
+ 
 }
 
 function Playmusic1() {
@@ -96,9 +126,6 @@ const jumpintm1 = maxdum1 / 5;
 const jumpintm2 = maxdum2 / 5;
 
 function jumpsong1() {
-  console.log("Duration of m1: " + m1.duration());
-  console.log("Duration of m2: " + m2.duration());
-
   if (m1.isPlaying()) {
     jumpV += jumpintm1;
     if (jumpV >= maxdum1) {
