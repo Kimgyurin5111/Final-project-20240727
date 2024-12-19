@@ -29,15 +29,19 @@ function setup() {
   button2 = createButton("PLAY2");
   button2.mousePressed(Playmusic2);
 
-
   up = createButton("+");
   up.mousePressed(plusVol);
   down = createButton("-");
   down.mousePressed(minusVol);
+
+  sliderRate = createSlider(0, 2, 1, 0.1);
 }
 
 function draw() {
   background(220);
+  
+  m1.rate(sliderRate.value());
+  m2.rate(sliderRate.value());
 }
 
 function Playmusic1() {
@@ -60,7 +64,6 @@ function Playmusic2() {
     button2.html("PLAY2");
   }
 }
-
 
 function minusVol() {
   vol1 -= 0.1;
