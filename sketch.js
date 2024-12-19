@@ -12,13 +12,18 @@ let button4;
 let buttonJump1;
 let buttonJump2;
 
-let jumpV=0;
+let jumpV = 0;
 let vol1;
+
+let img1;
+let img2;
 
 function preload() {
   soundFormats("mp3", "ogg");
   m1 = loadSound("Gosan.mp3");
   m2 = loadSound("Andre99.mp3");
+  img1 = loadImage("silicagel logo.png");
+  img2 = loadImage("silicagel logo.png");
 }
 
 function setup() {
@@ -40,6 +45,9 @@ function setup() {
 
   slider = createSlider(0, 2, 0.5, 0.1);
   sliderRate = createSlider(0, 2, 1, 0.1);
+
+  textSize(40);
+  textAlign(CENTER, CENTER);
 }
 
 function draw() {
@@ -50,9 +58,15 @@ function draw() {
   vol1 = slider.value();
   m1.rate(sliderRate.value());
   m2.rate(sliderRate.value());
-  
-  line(20,310,620,310)
-  line(310,20,310,620)
+
+  line(20, 320, 620, 320);
+  line(320, 20, 320, 620);
+
+  fill(0);
+  text("Silicagel", width / 2, height / 2);
+
+  image(img1, 0, 0, 320, 320);
+  image(img2,320,320,320,320);
 }
 
 function Playmusic1() {
@@ -76,23 +90,23 @@ function Playmusic2() {
   }
 }
 
-const maxdum1 = 191.40208616780046; 
-const maxdum2 = 203.61578231292518; 
-const jumpintm1 = maxdum1/5; 
-const jumpintm2 = maxdum2/5; 
+const maxdum1 = 191.40208616780046;
+const maxdum2 = 203.61578231292518;
+const jumpintm1 = maxdum1 / 5;
+const jumpintm2 = maxdum2 / 5;
 
 function jumpsong1() {
   console.log("Duration of m1: " + m1.duration());
   console.log("Duration of m2: " + m2.duration());
 
   if (m1.isPlaying()) {
-    jumpV += jumpintm1; 
+    jumpV += jumpintm1;
     if (jumpV >= maxdum1) {
       jumpV = 0;
     }
     m1.jump(jumpV);
   } else if (m2.isPlaying()) {
-    jumpV += jumpintm2; 
+    jumpV += jumpintm2;
     if (jumpV >= maxdum2) {
       jumpV = 0;
     }
@@ -106,7 +120,7 @@ function jumpsong2() {
     jumpV -= jumpintm1;
 
     if (jumpV < 0) {
-      jumpV = 0;  
+      jumpV = 0;
     }
 
     m1.jump(jumpV);
@@ -114,7 +128,7 @@ function jumpsong2() {
     jumpV -= jumpintm2;
 
     if (jumpV < 0) {
-      jumpV = 0;  
+      jumpV = 0;
     }
     m2.jump(jumpV);
   } else {
